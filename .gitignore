@@ -1,0 +1,23 @@
+# Node modules folder ko ignore karne ke liye
+node_modules/
+
+# Environment variables files ignore karo
+.env
+
+# Logs ko ignore karo
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build folders ignore karo (React/Vite ya jo bhi build ho)
+build/
+dist/
+
+# OS specific files ignore karo (Windows, macOS)
+.DS_Store
+Thumbs.db
+
+# Dependency directories
+jspm_packages/
