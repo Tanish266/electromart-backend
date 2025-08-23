@@ -1,7 +1,7 @@
 const db = require("../config/db");
 
 const AddProductModel = {
-  addproduct: async (
+  addProduct: async (
     ProductName,
     Unit,
     ProductBrand,
