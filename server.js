@@ -16,12 +16,14 @@ dotenv.config();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
+// const cors = require("cors");
 app.use(
   cors({
     origin: [
       "https://eelectromart.netlify.app",
       "https://electromart-admin.netlify.app",
     ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
