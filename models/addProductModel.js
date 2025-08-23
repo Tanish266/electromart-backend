@@ -15,7 +15,7 @@ const AddProductModel = {
     Category
   ) => {
     try {
-      const query = `INSERT INTO addProduct 
+      const query = `INSERT INTO addproduct 
         (ProductName, Unit, ProductBrand, ProductDescription, MainImage, ExtraImage, 
          VariantsColor, VariantsSize, Price, discountpercentage, Category) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
@@ -46,7 +46,7 @@ const AddProductModel = {
 
   getAllProducts: async () => {
     try {
-      const query = `SELECT * FROM addProduct`;
+      const query = `SELECT * FROM addproduct`;
       const [rows] = await db.promise().query(query);
       return rows;
     } catch (err) {
@@ -57,7 +57,7 @@ const AddProductModel = {
 
   getProductById: async (productId) => {
     try {
-      const query = `SELECT * FROM addProduct WHERE id = ?`;
+      const query = `SELECT * FROM addproduct WHERE id = ?`;
       const [rows] = await db.promise().query(query, [productId]);
       return rows.length ? rows[0] : null;
     } catch (err) {
@@ -83,7 +83,7 @@ const AddProductModel = {
       } = updatedData;
 
       const query = `
-        UPDATE addProduct SET 
+        UPDATE addproduct SET 
           ProductName = ?, 
           Unit = ?, 
           ProductBrand = ?, 
@@ -126,7 +126,7 @@ const AddProductModel = {
     try {
       const [result] = await db
         .promise()
-        .query("DELETE FROM addProduct WHERE id = ?", [id]);
+        .query("DELETE FROM addproduct WHERE id = ?", [id]);
       return result;
     } catch (err) {
       console.error("Error deleting product:", err);
