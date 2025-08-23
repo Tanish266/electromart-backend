@@ -1,4 +1,4 @@
-const AddProductModel = require("../models/addProductModel");
+const AddProductModel = require("../models/addproductModel");
 const db = require("../config/db");
 
 // Helper function to parse JSON fields
@@ -13,7 +13,7 @@ const parseJSONField = (field, fallback = []) => {
 };
 
 // Add Product Controller
-exports.addProduct = async (req, res) => {
+exports.addproduct = async (req, res) => {
   try {
     const {
       ProductName,
@@ -48,7 +48,7 @@ exports.addProduct = async (req, res) => {
     }
 
     // Add product to DB
-    const result = await AddProductModel.addProduct(
+    const result = await AddProductModel.addproduct(
       ProductName,
       Unit,
       ProductBrand !== "undefined" ? ProductBrand : null,

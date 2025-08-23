@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const userRoutes = require("./routes/userRoutes");
 const addressRoutes = require("./routes/addressRoutes");
 const errorHandler = require("./middleware/errorHandler");
-const addProductRoutes = require("./routes/addProductRoutes");
+const addproductRoutes = require("./routes/addproductRoutes");
 const AdminuserRoutes = require("./routes/AdminuserRoutes");
 const CartRoutes = require("./routes/CartRoutes");
 const orderRoutes = require("./routes/orderRoutes");
@@ -36,7 +36,7 @@ app.use("/p_image", express.static("p_image"));
 // Routes
 app.use("/api", userRoutes);
 app.use("/api", addressRoutes);
-app.use("/api", addProductRoutes);
+app.use("/api", addproductRoutes);
 app.use("/api", AdminuserRoutes);
 app.use("/api", CartRoutes);
 app.use("/api", orderRoutes);

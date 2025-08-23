@@ -1,5 +1,5 @@
 const Order = require("../models/orderModel");
-const { decreaseProductQty } = require("./addProductController");
+const { decreaseProductQty } = require("./addproductController");
 
 // Utility function for error responses
 const handleError = (res, statusCode, message) => {
