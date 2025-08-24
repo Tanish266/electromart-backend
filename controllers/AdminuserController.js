@@ -128,3 +128,22 @@ exports.loginAdminUser = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+// Update admin user profile
+exports.updateAdminUser = async (req, res) => {
+  const id = req.params.id;
+  const updateData = req.body;
+
+  // You can add field validation logic here
+
+  try {
+    const result = await AdminUserModel.updateAdminUser(id, updateData);
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.json({ message: "Profile updated successfully" });
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    res.status(500).json({ error: "Error updating profile" });
+  }
+};

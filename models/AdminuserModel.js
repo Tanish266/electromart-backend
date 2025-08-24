@@ -55,6 +55,18 @@ const AdminUserModel = {
       );
     });
   },
+
+  // Update admin user profile by ID
+  updateAdminUser: (id, updateData) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        "UPDATE adminusers SET ? WHERE id = ?",
+        [updateData, id],
+        (err, result) =>
+          err ? reject(new Error("Database update error")) : resolve(result)
+      );
+    });
+  },
 };
 
 module.exports = AdminUserModel;
