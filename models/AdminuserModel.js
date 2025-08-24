@@ -4,7 +4,7 @@ const AdminUserModel = {
   getAllAdminUsers: () => {
     return new Promise((resolve, reject) => {
       db.query(
-        "SELECT id, name, email, phone, address, gender, birthDate FROM Adminusers",
+        "SELECT id, name, email, phone, address, gender, birthDate FROM adminusers",
         (err, results) =>
           err ? reject(new Error("Database query error")) : resolve(results)
       );
@@ -14,7 +14,7 @@ const AdminUserModel = {
   getAdminUserByEmail: (email) => {
     return new Promise((resolve, reject) => {
       db.query(
-        "SELECT * FROM Adminusers WHERE LOWER(email) = LOWER(?) LIMIT 1",
+        "SELECT * FROM adminusers WHERE LOWER(email) = LOWER(?) LIMIT 1",
         [email],
         (err, results) =>
           err
@@ -27,7 +27,7 @@ const AdminUserModel = {
   getAdminUserById: (id) => {
     return new Promise((resolve, reject) => {
       db.query(
-        "SELECT id, name, email, phone, address, gender, birthDate FROM Adminusers WHERE id = ? LIMIT 1",
+        "SELECT id, name, email, phone, address, gender, birthDate FROM adminusers WHERE id = ? LIMIT 1",
         [id],
         (err, results) =>
           err
@@ -48,7 +48,7 @@ const AdminUserModel = {
   ) => {
     return new Promise((resolve, reject) => {
       db.query(
-        "INSERT INTO Adminusers (name, email, password, phone, address, gender, birthDate) VALUES (?, ?, ?, ?, ?, ?, ?)",
+        "INSERT INTO adminusers (name, email, password, phone, address, gender, birthDate) VALUES (?, ?, ?, ?, ?, ?, ?)",
         [name, email, hashedPassword, phone, address, gender, birthDate],
         (err, result) =>
           err ? reject(new Error("Database insertion error")) : resolve(result)
