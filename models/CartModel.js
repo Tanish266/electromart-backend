@@ -16,7 +16,7 @@ const CartModel = {
     try {
       // Check if the item already exists in the cart
       const checkQuery = `
-        SELECT * FROM Cart 
+        SELECT * FROM cart 
         WHERE userId = ? AND productId = ? AND variantColor = ? AND variantSize = ?
       `;
       const checkValues = [userId, productId, variantColor, variantSize];
@@ -26,7 +26,7 @@ const CartModel = {
       if (existingCart.length > 0) {
         // If the item exists, update the quantity
         const updateQuery = `
-          UPDATE Cart
+          UPDATE cart
           SET quantity = quantity + ?
           WHERE userId = ? AND productId = ? AND variantColor = ? AND variantSize = ?
         `;
@@ -44,7 +44,7 @@ const CartModel = {
       } else {
         // If the item doesn't exist, insert a new entry
         const insertQuery = `
-          INSERT INTO Cart (
+          INSERT INTO cart (
             userId, productId, productName, productBrand,
             mainImage, price, quantity, variantColor, variantSize
           )
@@ -82,7 +82,7 @@ const CartModel = {
   ) => {
     try {
       const query = `
-        UPDATE Cart
+        UPDATE cart
         SET quantity = ?
         WHERE userId = ? AND productId = ? AND variantColor = ? AND variantSize = ?
       `;
@@ -102,7 +102,7 @@ const CartModel = {
   RemoveFromCart: async (userId, productId, variantColor, variantSize) => {
     try {
       const query = `
-      DELETE FROM Cart
+      DELETE FROM cart
       WHERE userId = ? AND productId = ? AND variantColor = ? AND variantSize = ?
     `;
       const values = [userId, productId, variantColor, variantSize];
