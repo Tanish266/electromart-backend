@@ -10,12 +10,12 @@ router.get("/search", (req, res) => {
   }
 
   const sql = `
-   SELECT id, ProductName, Category, ProductBrand, MainImage, JSON_EXTRACT(price, '$[0]') AS Price
-FROM addproduct
-WHERE ProductName LIKE ? OR Category LIKE ? OR ProductBrand LIKE ?
+    SELECT id, ProductName, Category, ProductBrand, MainImage, JSON_EXTRACT(price, '$[0]') AS Price
+    FROM addproduct
+    WHERE ProductName LIKE ? OR Category LIKE ? OR ProductBrand LIKE ?
   `;
 
-  db.query(sql, [`%${q}%`, `%${q}%`], (err, results) => {
+  db.query(sql, [`%${q}%`, `%${q}%`, `%${q}%`], (err, results) => {
     if (err) {
       console.error("Search query error:", err);
       return res.status(500).json({ message: "Database error", error: err });
