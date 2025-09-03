@@ -10,6 +10,7 @@ const addproductRoutes = require("./routes/addProductRoutes");
 const AdminuserRoutes = require("./routes/AdminuserRoutes");
 const CartRoutes = require("./routes/CartRoutes");
 const orderRoutes = require("./routes/orderRoutes");
+const searchRoutes = require("./routes/searchRoute");
 
 dotenv.config();
 
@@ -34,6 +35,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/p_image", express.static("p_image"));
 
 // Routes
+app.use("/api", searchRoutes);
 app.use("/api", userRoutes);
 app.use("/api", addressRoutes);
 app.use("/api", addproductRoutes);
