@@ -13,7 +13,6 @@ router.get("/search", (req, res) => {
    SELECT id, ProductName, Category, ProductBrand, MainImage, JSON_EXTRACT(price, '$[0]') AS Price
 FROM addproduct
 WHERE ProductName LIKE ? OR Category LIKE ? OR ProductBrand LIKE ?
-
   `;
 
   db.query(sql, [`%${q}%`, `%${q}%`], (err, results) => {
