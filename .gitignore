@@ -3,7 +3,7 @@ node_modules/
 
 # Environment variables files ignore karo
 .env
-ca.pem
+# ca.pem
 # Logs ko ignore karo
 logs
 *.log
