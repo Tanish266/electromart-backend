@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
 const cors = require("cors");
-const bodyParser = require("body-parser");
+const morgan = require("morgan");
 const userRoutes = require("./routes/userRoutes");
 const addressRoutes = require("./routes/addressRoutes");
 const errorHandler = require("./middleware/errorHandler");
@@ -17,19 +17,42 @@ dotenv.config();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-// const cors = require("cors");
+// Logging
+if (process.env.NODE_ENV !== "test") {
+  app.use(morgan("dev"));
+}
 app.use(
   cors({
-    origin: [
-      "https://eelectromart.netlify.app",
-      "https://electromart-admin.netlify.app",
-    ],
+    origin: "https://eelectromart.netlify.app",
+  })
+);
+// CORS with env-driven origins
+const defaultOrigins = [
+  "https://eelectromart.netlify.app",
+  "https://electromart-admin.netlify.app",
+  "http://localhost:5173",
+  "http://127.0.0.1:5173",
+];
+const envOrigins = (process.env.ALLOWED_ORIGINS || "")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
+const allowedOrigins = [...new Set([...defaultOrigins, ...envOrigins])];
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // allow requests with no origin (like mobile apps or curl)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) !== -1) {
+        return callback(null, true);
+      }
+      return callback(new Error("Not allowed by CORS"));
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
 
-app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/p_image", express.static("p_image"));
