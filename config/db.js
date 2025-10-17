@@ -1,6 +1,6 @@
 const mysql = require("mysql2");
 const dotenv = require("dotenv");
-
+const fs = require("fs");
 dotenv.config();
 
 const db = mysql.createPool({
@@ -9,9 +9,11 @@ const db = mysql.createPool({
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
   port: process.env.DB_PORT,
-  connectionLimit: 10, // Prevents too many connections
+  connectionLimit: 10,
+  ssl: {
+    ca: fs.readFileSync(process.env.DB_CA_PATH),
+  },
 });
-
 db.getConnection((err) => {
   if (err) {
     console.error("Database connection failed:", err.message);
